@@ -17,5 +17,4 @@ public boolean equals(Object o) {
 @Override
 public int hashCode() {return Objects.hash(firstName, lastName);}
 @Override
-public String toString () {return "firstName: " + this.firstName + ", lastName: " + this.lastName;}
-}
+public String toString () {return "firstName: " + this.firstName + ", lastName: " + this.lastName;}}

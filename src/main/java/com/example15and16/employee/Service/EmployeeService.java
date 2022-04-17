@@ -1,7 +1,10 @@
 package com.example15and16.employee.Service;
 import com.example15and16.employee.Employee.Employee;
+
+import java.util.Collection;
+
 public interface EmployeeService {
-public Employee addEmployee (String firstName, String lastName);
-public Employee removeEmployee (String firstName, String lastName);
-public Employee findEmployee (String firstName, String lastName);
-public int indexOf(Employee employee);}
+public Employee add (String firstName, String lastName);
+public Employee remove (String firstName, String lastName);
+public Employee find (String firstName, String lastName);
+    Collection<Employee> getEmployees ();}
