@@ -1,7 +1,6 @@
 package com.example15and16.employee.Service;
 
 import com.example15and16.employee.Employee.Employee;
-
 import java.util.Collection;
 
 public interface EmployeeService {

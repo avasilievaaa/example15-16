@@ -5,49 +5,44 @@ import com.example15and16.employee.Exception.EmployeeFullArrayException;
 import com.example15and16.employee.Exception.EmployeeNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private final Set<Employee> employees;
+    private final Map<String, Employee> employees;
 
     public EmployeeServiceImpl() {
-        employees = new HashSet<>();
+        employees = new HashMap<>();
     }
 
     @Override
     public Employee add(String firstName, String lastName) {
         Employee employee = new Employee(firstName, lastName);
-        if (employees.contains(employee)) {
+        if (employees.containsKey(firstName + lastName)) {
             throw new EmployeeFullArrayException();
         }
-        employees.add(employee);
+        employees.put(firstName + lastName, employee);
         return employee;
     }
 
     @Override
     public Employee remove(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
-        if (!employees.contains(employee)) {
+        if (!employees.containsKey(firstName + lastName)) {
             throw new EmployeeNotFoundException();
         }
-        employees.remove(employee);
-        return employee;
+        return employees.remove(firstName + lastName);
     }
 
     @Override
     public Employee find(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
-        if (!employees.contains(employee)) {
+        if (!employees.containsKey(firstName + lastName)) {
             throw new EmployeeNotFoundException();
         }
-        return employee;
+        return employees.get(firstName + lastName);
     }
 
     @Override
     public Collection<Employee> getEmployees() {
-        return Set.copyOf(employees);
+        return Collections.unmodifiableCollection(employees.values());
     }
 }
