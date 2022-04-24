@@ -16,8 +16,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee add(String firstName, String lastName) {
-        Employee employee = new Employee(firstName, lastName);
+    public Employee add(String firstName, String lastName, int departmentId, int salary) {
+        Employee employee = new Employee(firstName, lastName, departmentId, salary);
         if (employees.containsKey(firstName + lastName)) {
             throw new EmployeeFullArrayException();
         }

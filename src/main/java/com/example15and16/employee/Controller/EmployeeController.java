@@ -17,15 +17,15 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
-    public String Employee(@RequestParam String firstName, @RequestParam String lastName) {
-       Employee result = employeeService.add(firstName, lastName);
-       return generateMassage (result, "успешно создан");
+    public String Employee(@RequestParam String firstName, @RequestParam String lastName, @RequestParam int departmentId, @RequestParam int salary) {
+        Employee result = employeeService.add(firstName, lastName, departmentId, salary);
+        return generateMassage(result, "успешно создан");
     }
 
     @GetMapping("/remove")
     public String remove(@RequestParam String firstName, @RequestParam String lastName) {
         Employee result = employeeService.remove(firstName, lastName);
-        return generateMassage (result, "удален");
+        return generateMassage(result, "удален");
     }
 
     @GetMapping("/find")
@@ -33,10 +33,10 @@ public class EmployeeController {
         return employeeService.find(firstName, lastName);
     }
 
-    private String generateMassage (Employee employee, String status) {
+    private String generateMassage(Employee employee, String status) {
         return String.format("Сотрудник %s %s %s ",
-        employee.getFirstName(),
-        employee.getLastName(),
-        status);
+                employee.getFirstName(),
+                employee.getLastName(),
+                status);
     }
 }
