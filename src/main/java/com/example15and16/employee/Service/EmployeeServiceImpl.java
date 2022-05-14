@@ -24,7 +24,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Employee add(String firstName, String lastName, int departmentId, int salary) {
         infoCheck(capitalize(firstName), capitalize(lastName));
         Employee employee = new Employee(capitalize(firstName), capitalize(lastName), departmentId, salary);
-        if (employees.containsKey(firstName + lastName)) {
+        if (employees.containsKey(capitalize(firstName) + capitalize(lastName))) {
             throw new EmployeeFullArrayException();
         }
         employees.put(firstName + lastName, employee);
@@ -33,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee remove(String firstName, String lastName) {
-        infoCheck(capitalize(firstName), capitalize(lastName));
+        infoCheck(firstName, lastName);
         if (!employees.containsKey(firstName + lastName)) {
             throw new EmployeeNotFoundException();
         }
@@ -42,7 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee find(String firstName, String lastName) {
-        infoCheck(capitalize(firstName), capitalize(lastName));
+        infoCheck(firstName, lastName);
         if (!employees.containsKey(firstName + lastName)) {
             throw new EmployeeNotFoundException();
         }
