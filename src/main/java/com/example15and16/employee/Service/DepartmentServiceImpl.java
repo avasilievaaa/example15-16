@@ -4,7 +4,6 @@ import com.example15and16.employee.Employee.Employee;
 
 import com.example15and16.employee.Exception.EmployeeNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +44,6 @@ public class DepartmentServiceImpl implements DepartmentService {
     @Override
     public Map<Integer, List<Employee>> getAllEmployees() {
         return employeeService.getEmployees().stream()
-                .collect(Collectors.groupingBy(employee -> employee.getDepartmentId()));
+                .collect(Collectors.groupingBy(Employee::getDepartmentId));
     }
 }
