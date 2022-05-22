@@ -28,7 +28,6 @@ public class EmployeeServiceImplTest {
     @ParameterizedTest
     @MethodSource("provideParametersForTestsDeleteMotExistsEmployee")
     public void checkMethodsDeleteMotExistsEmployee(Employee empl, String firstName, String lastName, int department, int salary) {
-        assertEquals(empl, out.add(firstName, lastName, department, salary));
         assertThrows(EmployeeBadException.class, () -> out.remove(firstName + "1", lastName));
         assertThrows(EmployeeBadException.class, () -> out.remove(firstName, lastName + "1"));
 
@@ -41,14 +40,6 @@ public class EmployeeServiceImplTest {
         );
     }
 
-    @ParameterizedTest
-    @MethodSource("provideParametersForTestsRemoveEmployee")
-    public void checkMethodsRemoveEmployee(Employee empl, String firstName, String lastName, int department, int salary) {
-        assertEquals(empl, out.add(firstName, lastName, department, salary));
-        assertEquals(empl, out.remove(firstName, lastName));
-    }
-
-
     public static Stream<Arguments> provideParametersForTestsFindEmployee() {
         return Stream.of(
                 Arguments.of(employee1, "Иванова", "Юлия", 10, 100),
@@ -59,10 +50,8 @@ public class EmployeeServiceImplTest {
     @ParameterizedTest
     @MethodSource("provideParametersForTestsFindEmployee")
     public void checkMethodsFindEmployee(Employee empl, String firstName, String lastName, int department, int salary) {
-        assertEquals(empl, out.add(firstName, lastName, department, salary));
         assertEquals(empl, out.find(firstName, lastName));
     }
-
 
     public static Stream<Arguments> provideParametersForTestsAddEmployee() {
         return Stream.of(
@@ -77,7 +66,6 @@ public class EmployeeServiceImplTest {
         assertEquals(empl, out.add(firstName, lastName, department, salary));
     }
 
-
     public static Stream<Arguments> provideParametersForTestsAddExistsAndWithErrorsEmployee() {
         return Stream.of(
                 Arguments.of(employee1, "Иванова", "Юлия", 10, 100)
@@ -87,7 +75,6 @@ public class EmployeeServiceImplTest {
     @ParameterizedTest
     @MethodSource("provideParametersForTestsAddExistsAndWithErrorsEmployee")
     public void checkMethodsAddExistsEmployee(Employee empl, String firstName, String lastName, int department, int salary) {
-        assertEquals(empl, out.add(firstName, lastName, department, salary));
         assertThrows(EmployeeBadException.class, () -> out.add("", lastName, department, salary));
         assertThrows(EmployeeBadException.class, () -> out.add(firstName, "", department, salary));
     }

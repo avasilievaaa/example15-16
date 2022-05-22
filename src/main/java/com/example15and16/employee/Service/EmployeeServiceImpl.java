@@ -55,7 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Map<String, Employee> showEmployee() {
-        return null;
+        return employees;
     }
 
     private Employee infoCheck(String firstName, String lastName) {
