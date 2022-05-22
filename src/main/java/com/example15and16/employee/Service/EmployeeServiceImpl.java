@@ -11,7 +11,6 @@ import java.util.*;
 
 import static org.apache.tomcat.util.IntrospectionUtils.capitalize;
 
-
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     private final Map<String, Employee> employees;
@@ -52,6 +51,11 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Collection<Employee> getEmployees() {
         return Collections.unmodifiableCollection(employees.values());
+    }
+
+    @Override
+    public Map<String, Employee> showEmployee() {
+        return employees;
     }
 
     private Employee infoCheck(String firstName, String lastName) {

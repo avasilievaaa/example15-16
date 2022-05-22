@@ -56,7 +56,6 @@ public class Employee {
         return Objects.hash(firstName, lastName, departmentId, salary);
     }
 
-
     @Override
     public String toString() {
         return "firstName: " + this.firstName + ", lastName: " + this.lastName + ", departmentId: " + this.departmentId + ", salary: " + this.salary;

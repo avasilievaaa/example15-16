@@ -5,7 +5,6 @@ import com.example15and16.employee.Employee.Employee;
 import java.util.List;
 import java.util.Map;
 
-
 public interface DepartmentService {
     Employee getEmployeeWithMaxSalary(int departmentId);
 
